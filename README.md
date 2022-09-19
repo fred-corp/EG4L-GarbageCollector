@@ -31,6 +31,9 @@ Power consumption is around 130mA, when measuring and transmitting data.
 Data will be transmitted two times a day, so the battery should last for about 900 days.  
 Expected battery lifetime : 2 years
 
+When used in a park, one gateway should be enough (considering a 300m radius).  
+When used on streets, a gateway should be placed every 300m.
+
 ## Acknowledgements
 
 Proudly made by Frédéric Druppel, Théo Engels, Quentin Jadoul & Baudouin Losseau.

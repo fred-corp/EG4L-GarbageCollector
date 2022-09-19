@@ -27,6 +27,10 @@ More than your average Trash Can
 * 1mA BME280 Temperature, Humidity, Pressure Sensor
 * ~50mA SG90 servomotor
 
+Power consumption is around 130mA, when measuring and transmitting data.  
+Data will be transmitted two times a day, so the battery should last for about 900 days.  
+Expected battery lifetime : 2 years
+
 ## Acknowledgements
 
 Proudly made by Frédéric Druppel, Théo Engels, Quentin Jadoul & Baudouin Losseau.

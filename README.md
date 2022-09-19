@@ -1,5 +1,15 @@
 # EG4L : GarbageCollector
 
+More than your average Trash Can
+
+## Project goals
+
+* Monitor garbage level & weight
+* Raise a flag when full
+* Optionnal : Monitor Weather data (temperature, humidity, pressure)
+* Visualise data on graphs (Grafana)
+* Generate optimal collection routes (based on garbage levels)
+
 ## BOM
 
 * Feather M0 LoRaWAN or Arduino MRK WAN 1310
@@ -8,7 +18,6 @@
 * 1x HX711 Load Cell Amplifier & Load Cell
 * 1x BME280 Temperature, Humidity, Pressure Sensor (Adafruit breakout)
 * 1x SG90 servomotor
-
 
 ## Power needs
 

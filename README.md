@@ -7,7 +7,7 @@
 * 1x HC-SR04 Ultrasonic sensor
 * 1x HX711 Load Cell Amplifier & Load Cell
 * 1x BME280 Temperature, Humidity, Pressure Sensor (Adafruit breakout)
-* 1x 9g servomotor
+* 1x SG90 servomotor
 
 
 ## Power needs
@@ -16,7 +16,7 @@
 * 15mA HC-SR04 Ultrasonic sensor
 * 1.5mA : HX711 Load Cell Amplifier & Load Cell
 * 1mA BME280 Temperature, Humidity, Pressure Sensor
-* 1x 9g servomotor
+* ~50mA SG90 servomotor
 
 ## Acknowledgements
 

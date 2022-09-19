@@ -7,7 +7,6 @@
 * 1x HC-SR04 Ultrasonic sensor
 * 1x HX711 Load Cell Amplifier & Load Cell
 * 1x BME280 Temperature, Humidity, Pressure Sensor (Adafruit breakout)
-* 1x MQ-135 air quality sensor (breakout board)
 * 1x 9g servomotor
 
 
@@ -17,7 +16,6 @@
 * 15mA HC-SR04 Ultrasonic sensor
 * 1.5mA : HX711 Load Cell Amplifier & Load Cell
 * 1mA BME280 Temperature, Humidity, Pressure Sensor
-* 40mA MQ-135 air quality sensor
 * 1x 9g servomotor
 
 ## Acknowledgements

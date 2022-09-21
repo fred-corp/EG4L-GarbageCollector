@@ -1,4 +1,4 @@
-# EG4L : GarbageCollector
+# IT4L : GarbageCollector
 
 More than your average Trash Can
 

@@ -36,12 +36,12 @@ When used on streets, a gateway should be placed every 300m.
 
 ## MQTT Payload
 
-* Battery : Int8
-* Garbage : Int8
-* Weight : Int8
-* Temperature : Int8
-* Humidity : Int8
-* Pressure : Int16
+* Battery : UInt8 (percentage)
+* Garbage : UInt8 (height)
+* Weight : UInt8 (hg, /10 for kg)
+* Temperature : Int8 (d°C, /10 for °C)
+* Humidity : UInt8 (percentage)
+* Pressure : UInt16 (hPa)
 
 Hex string : ```0xBBGGWWTTHHPPPP```
 

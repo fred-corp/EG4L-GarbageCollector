@@ -34,6 +34,17 @@ Expected battery lifetime : 2 years
 When used in a park, one gateway should be enough (considering a 300m radius).  
 When used on streets, a gateway should be placed every 300m.
 
+## MQTT Payload
+
+* Battery : Int8
+* Garbage : Int8
+* Weight : Int8
+* Temperature : Int8
+* Humidity : Int8
+* Pressure : Int16
+
+Hex string : ```0xBBGGWWTTHHPPPP```
+
 ## Acknowledgements
 
 Proudly made by Frédéric Druppel, Théo Engels, Quentin Jadoul & Baudouin Losseau.

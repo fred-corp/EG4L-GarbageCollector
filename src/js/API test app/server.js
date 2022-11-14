@@ -1,11 +1,13 @@
 const mqtt = require('mqtt')
+const express = require('express')
+const app = express()
 
 const secrets = require('./secrets.json')
 
 const host = 'eu1.cloud.thethings.network'
-const port = '1883'
+const MQTTport = '1883'
 
-const connectUrl = `mqtt://${host}:${port}`
+const connectUrl = `mqtt://${host}:${MQTTport}`
 const client = mqtt.connect(connectUrl, {
   clean: true,
   connectTimeout: 4000,
@@ -32,4 +34,19 @@ client.on("message", function (topic, message, packet) {
   console.log("message is " + message)
   console.log("topic is " + topic)
   console.log("payload is " + JSON.stringify(data, null, 2));
+})
+
+const port = 3000
+
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'))
+
+
+app.listen(port, function () {
+  console.log('server is listening on port ' + port)
+})
+
+
+app.get('/', function (req, res) {
+  res.render('index.ejs')
 })

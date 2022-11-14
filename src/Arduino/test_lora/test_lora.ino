@@ -83,6 +83,9 @@ if (scale.is_ready()) {
 
 
   dist = hc.dist();
+  if (dist>80){
+    dist = 80;
+  }
   payload[1]=(uint8_t) dist;
   Serial.println("dist");
   Serial.println(dist);

@@ -36,14 +36,16 @@
         // create table entry for each Id key in data
         for (const [key, value] of Object.entries(data)) {
           const date = new Date(value.timestamp);
-          // map battery voltage from 0-255 to 3.3-4.2V
+          // map battery voltage from 0-255 to 3.3-4.2V, then round to 2 decimal places
           const batVoltage = (value.bat / 255) * 0.9 + 3.3;
-          // change row of data table if ID exists, append if not
+          // mat garbage_h from 0-80 to 100-0%
+          const garbageFill = (1 - value.garbage_h / 80) * 100;
+          
           if (document.getElementById(key)) {
             document.getElementById(key).innerHTML = `
               <td>${key}</td>
-              <td>${batVoltage} V</td>
-              <td>${value.garbage_h} cm</td>
+              <td>${batVoltage.toFixed(2)} V</td>
+              <td>${garbageFill.toFixed(2)} %</td>
               <td>${value.garbage_w/10} kg</td>
               <td>${value.hum} %rH</td>
               <td>${value.pres} hPa</td>
@@ -55,8 +57,8 @@
             row.id = key;
             row.innerHTML = `
               <td>${key}</td>
-              <td>${batVoltage} V</td>
-              <td>${value.garbage_h} cm</td>
+              <td>${batVoltage.toFixed(2)} V</td>
+              <td>${garbageFill.toFixed(2)} %</td>
               <td>${value.garbage_w/10} kg</td>
               <td>${value.hum} %rH</td>
               <td>${value.pres} hPa</td>

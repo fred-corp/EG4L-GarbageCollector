@@ -10,7 +10,7 @@ const MQTTport = '1883'
 var MQTTdata = { 
   "0": {
     "bat": 255,
-    "garbage_h": 0,
+    "garbage_h": 80,
     "garbage_w": 0,
     "hum": 12,
     "pres": 1013,

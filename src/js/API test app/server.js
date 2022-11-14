@@ -46,8 +46,8 @@ client.on("message", function (topic, message, packet) {
   MQTTdata[data.id] = data
   // console.log("message is " + message)
   // console.log("topic is " + topic)
-  console.log("payload is " + JSON.stringify(data, null, 2));
-  console.log("MQTTdata is " + JSON.stringify(MQTTdata, null, 2));
+  // console.log("payload is " + JSON.stringify(data, null, 2));
+  // console.log("MQTTdata is " + JSON.stringify(MQTTdata, null, 2));
 })
 
 const port = 3000

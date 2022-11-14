@@ -33,12 +33,10 @@
 
       const displayData = async () => {
         const data = await getData();
-        // create table entry for each Id key in data
+        
         for (const [key, value] of Object.entries(data)) {
           const date = new Date(value.timestamp);
-          // map battery voltage from 0-255 to 3.3-4.2V, then round to 2 decimal places
           const batVoltage = (value.bat / 255) * 0.9 + 3.3;
-          // mat garbage_h from 0-80 to 100-0%
           const garbageFill = (1 - value.garbage_h / 80) * 100;
           
           if (document.getElementById(key)) {

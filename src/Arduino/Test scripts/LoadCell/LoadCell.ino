@@ -24,7 +24,8 @@ void loop() {
 
   if (scale.is_ready()) {
     long reading = scale.read() - calibZero;
-    reading = -reading/1000;
+    reading = -reading/168;
+    
 
     Serial.print("HX711 reading: ");
     Serial.println(reading);

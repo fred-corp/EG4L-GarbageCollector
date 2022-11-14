@@ -6,12 +6,75 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>API test</h1>
-    <h2>Hello, World!</h2>
-    
-    <script src="" async defer></script>
+    <h1>GarbageCollector monitor</h1>
+    <button id="refresh">Refresh</button>
+
+    <table id="data">
+      <tr>
+        <th>Garbage ID</th>
+        <th>Bat</th>
+        <th>Garbahe height</th>
+        <th>Garbage weight</th>
+        <th>Humidity</th>
+        <th>Pressure</th>
+        <th>Temperature</th>
+        <th>Time</th>
+      </tr>
+    </table>
+    <script>
+      const getData = async () => {
+        const response = await fetch('/api');
+        const data = await response.json();
+        return data;
+      }
+
+      const displayData = async () => {
+        const data = await getData();
+        // create table entry for each Id key in data
+        for (const [key, value] of Object.entries(data)) {
+          const date = new Date(value.timestamp);
+          // map battery voltage from 0-255 to 3.3-4.2V
+          const batVoltage = (value.bat / 255) * 0.9 + 3.3;
+          // change row of data table if ID exists, append if not
+          if (document.getElementById(key)) {
+            document.getElementById(key).innerHTML = `
+              <td>${key}</td>
+              <td>${batVoltage} V</td>
+              <td>${value.garbage_h} cm</td>
+              <td>${value.garbage_w/10} kg</td>
+              <td>${value.hum} %rH</td>
+              <td>${value.pres} hPa</td>
+              <td>${value.temp} °C</td>
+              <td>${date.toLocaleString()}</td>
+            `;
+          } else {
+            const row = document.createElement('tr');
+            row.id = key;
+            row.innerHTML = `
+              <td>${key}</td>
+              <td>${batVoltage} V</td>
+              <td>${value.garbage_h} cm</td>
+              <td>${value.garbage_w/10} kg</td>
+              <td>${value.hum} %rH</td>
+              <td>${value.pres} hPa</td>
+              <td>${value.temp} °C</td>
+              <td>${date.toLocaleString()}</td>
+            `;
+            document.getElementById('data').appendChild(row);
+          }
+
+
+        }
+      }
+
+      const refreshButton = document.getElementById('refresh');
+      refreshButton.addEventListener('click', displayData);
+
+      setInterval(displayData, 5000);
+
+    </script>
   </body>
 </html>

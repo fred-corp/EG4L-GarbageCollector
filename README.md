@@ -6,8 +6,8 @@ More than your average Trash Can
 
 * Monitor garbage level & weight
 * Raise a flag when full
-* Optionnal : Monitor Weather data (temperature, humidity, pressure)
-* Visualise data on graphs (Grafana)
+* Optional : Monitor Weather data (temperature, humidity, pressure)
+* Visualize data on graphs (Grafana)
 * Generate optimal collection routes (based on garbage levels)
 
 ## BOM

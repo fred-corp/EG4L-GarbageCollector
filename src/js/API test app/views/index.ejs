@@ -9,21 +9,29 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>GarbageCollector monitor</h1>
-    <button id="refresh">Refresh</button>
+    <div>
+      <h1>GarbageCollector monitor</h1>
+    </div>
 
-    <table id="data">
-      <tr>
-        <th>Garbage ID</th>
-        <th>Bat</th>
-        <th>Garbahe height</th>
-        <th>Garbage weight</th>
-        <th>Humidity</th>
-        <th>Pressure</th>
-        <th>Temperature</th>
-        <th>Time</th>
-      </tr>
-    </table>
+    <div>
+      <button id="refresh">Refresh</button>
+    </div>
+
+    <div>
+      <table id="data">
+        <tr>
+          <th>Garbage ID</th>
+          <th>Bat</th>
+          <th>Garbage height</th>
+          <th>Garbage weight</th>
+          <th>Humidity</th>
+          <th>Pressure</th>
+          <th>Temperature</th>
+          <th>Time (TLR)</th>
+        </tr>
+      </table>
+    </div>
+    
     <script>
       const getData = async () => {
         const response = await fetch('/api');
@@ -65,8 +73,27 @@
             `;
             document.getElementById('data').appendChild(row);
           }
+        }
+        setStyle()
+      }
 
-
+      // Set style for table
+      // If garbage is 100% full, set background to red, if above 75% set to yellow with black text
+      const setStyle = () => {
+        const rows = document.getElementById('data').getElementsByTagName('tr');
+        for (let i = 1; i < rows.length; i++) {
+          const cells = rows[i].getElementsByTagName('td');
+          const garbageFill = parseFloat(cells[2].innerHTML);
+          if (garbageFill >= 100) {
+            rows[i].style.backgroundColor = 'red';
+            rows[i].style.color = 'white';
+          } else if (garbageFill >= 75) {
+            rows[i].style.backgroundColor = 'yellow';
+            rows[i].style.color = 'black';
+          } else {
+            rows[i].style.backgroundColor = 'white';
+            rows[i].style.color = 'black';
+          }
         }
       }
 

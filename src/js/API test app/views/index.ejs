@@ -74,25 +74,59 @@
             document.getElementById('data').appendChild(row);
           }
         }
+        // Sort table by ID
+        const table = document.getElementById('data');
+        const rows = table.getElementsByTagName('tr');
+        const sortedRows = Array.from(rows).slice(1).sort((a, b) => {
+          return a.id - b.id;
+        });
+        for (const row of sortedRows) {
+          table.appendChild(row);
+        }
+
         setStyle()
       }
 
       // Set style for table
-      // If garbage is 100% full, set background to red, if above 75% set to yellow with black text
       const setStyle = () => {
         const rows = document.getElementById('data').getElementsByTagName('tr');
         for (let i = 1; i < rows.length; i++) {
           const cells = rows[i].getElementsByTagName('td');
+
           const garbageFill = parseFloat(cells[2].innerHTML);
           if (garbageFill >= 100) {
-            rows[i].style.backgroundColor = 'red';
-            rows[i].style.color = 'white';
+            cells[2].style.backgroundColor = '#DE0001';
+            cells[2].style.color = 'white';
           } else if (garbageFill >= 75) {
-            rows[i].style.backgroundColor = 'yellow';
-            rows[i].style.color = 'black';
+            cells[2].style.backgroundColor = '#FEDA15';
+            cells[2].style.color = 'black';
           } else {
-            rows[i].style.backgroundColor = 'white';
-            rows[i].style.color = 'black';
+            cells[2].style.backgroundColor = '';
+            cells[2].style.color = '';
+          }
+
+          const batVoltage = parseFloat(cells[1].innerHTML);
+          if (batVoltage < 3.5) {
+            cells[1].style.backgroundColor = '#DE0001';
+            cells[1].style.color = 'white';
+          } else if (batVoltage <= 3.9) {
+            cells[1].style.backgroundColor = '#FEDA15';
+            cells[1].style.color = 'black';
+          } else {
+            cells[1].style.backgroundColor = '';
+            cells[1].style.color = '';
+          }
+
+          const weight = parseFloat(cells[3].innerHTML);
+          if (weight >= 10) {
+            cells[3].style.backgroundColor = '#DE0001';
+            cells[3].style.color = 'white';
+          } else if (weight >= 7) {
+            cells[3].style.backgroundColor = '#FEDA15';
+            cells[3].style.color = 'black';
+          } else {
+            cells[3].style.backgroundColor = '';
+            cells[3].style.color = '';
           }
         }
       }

@@ -24,7 +24,7 @@ const client = mqtt.connect(connectUrl, {
   clean: true,
   connectTimeout: 4000,
   username: 'garbage-collector@ttn',
-  password: secrets.apikey,
+  password: secrets.apiKey,
   reconnectPeriod: 1000,
 })
 

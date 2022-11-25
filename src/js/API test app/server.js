@@ -16,6 +16,33 @@ var MQTTdata = {
     "pres": 1013,
     "temp": 21,
     "timestamp": 0
+  },
+  "2": {
+    "bat": 33,
+    "garbage_h": 19,
+    "garbage_w": 0,
+    "hum": 27,
+    "pres": 1009,
+    "temp": 17,
+    "timestamp": 0
+  },
+  "3": {
+    "bat": 77,
+    "garbage_h": 65,
+    "garbage_w": 110,
+    "hum": 34,
+    "pres": 1020,
+    "temp": 12,
+    "timestamp": 0
+  },
+  "4": {
+    "bat": 247,
+    "garbage_h": 0,
+    "garbage_w": 82,
+    "hum": 9,
+    "pres": 1017,
+    "temp": 22,
+    "timestamp": 0
   }
 }
 

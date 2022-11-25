@@ -31,6 +31,10 @@
         </tr>
       </table>
     </div>
+
+    <div id="messages">
+      
+    </div>
     
     <script>
       const getData = async () => {
@@ -89,46 +93,119 @@
 
       // Set style for table
       const setStyle = () => {
+        let messageData = {};
         const rows = document.getElementById('data').getElementsByTagName('tr');
         for (let i = 1; i < rows.length; i++) {
+          // check if ID exists in messageData
+          // if not, add it with an empty {}
+          if (!messageData[rows[i].id]) {
+            messageData[rows[i].id] = {height: 0, weight: 0, bat: 0};
+          }
+
           const cells = rows[i].getElementsByTagName('td');
 
           const garbageFill = parseFloat(cells[2].innerHTML);
           if (garbageFill >= 100) {
             cells[2].style.backgroundColor = '#DE0001';
             cells[2].style.color = 'white';
+
+            messageData[rows[i].id].height = 2;
           } else if (garbageFill >= 75) {
             cells[2].style.backgroundColor = '#FEDA15';
             cells[2].style.color = 'black';
+            messageData[rows[i].id].height = 1;
           } else {
             cells[2].style.backgroundColor = '';
             cells[2].style.color = '';
+            messageData[rows[i].id].height = 0;
           }
 
           const batVoltage = parseFloat(cells[1].innerHTML);
           if (batVoltage < 3.5) {
             cells[1].style.backgroundColor = '#DE0001';
             cells[1].style.color = 'white';
+            messageData[rows[i].id].bat = 2;
           } else if (batVoltage <= 3.9) {
             cells[1].style.backgroundColor = '#FEDA15';
             cells[1].style.color = 'black';
+            messageData[rows[i].id].bat = 1;
           } else {
             cells[1].style.backgroundColor = '';
             cells[1].style.color = '';
+            messageData[rows[i].id].bat = 0;
           }
 
           const weight = parseFloat(cells[3].innerHTML);
           if (weight >= 10) {
             cells[3].style.backgroundColor = '#DE0001';
             cells[3].style.color = 'white';
+            messageData[rows[i].id].weight = 2;
           } else if (weight >= 7) {
             cells[3].style.backgroundColor = '#FEDA15';
             cells[3].style.color = 'black';
+            messageData[rows[i].id].weight = 1;
           } else {
             cells[3].style.backgroundColor = '';
             cells[3].style.color = '';
+            messageData[rows[i].id].weight = 0;
           }
         }
+
+        // Display messages for each garbage in messageData
+        let message = '';
+        for (const [key, value] of Object.entries(messageData)) {
+          let line = ''
+          if (value.height === 2 || value.weight === 2 || value.bat === 2 || value.height === 1 || value.weight === 1 || value.bat === 1) {
+            line = `<p>Garbage ${key} `;
+          }
+
+          if (value.height === 2 && value.weight === 0 && value.bat === 0) {
+            line += 'is full. ';
+          } else if (value.height === 1 && value.weight === 0 && value.bat === 0) {
+            line += 'is almost full. ';
+          } else {
+            if (value.height === 2) {
+              line += 'is full ';
+            } else if (value.height === 1) {
+              line += 'is nearly full ';
+            }
+
+            if (value.weight === 2 && value.bat === 0) {
+              line += 'and is heavy. ';
+            } else if (value.weight === 1 && value.bat === 0) {
+              line += 'and is nearly heavy. ';
+            } else if (value.bat === 2 && value.weight === 0) {
+              line += 'and has low battery. ';
+            } else if (value.bat === 1 && value.weight === 0) {
+              line += 'and has nearly low battery. ';
+            } else {
+              if (value.height === 2) {
+                line += ', ';
+              } else if (value.height === 1) {
+                line += ', ';
+              }
+
+              if (value.weight === 2) {
+                line += 'is heavy ';
+              } else if (value.weight === 1) {
+                line += 'is nearly heavy ';
+              }
+
+              if (value.bat === 2) {
+                line += 'and has low battery. ';
+              } else if (value.bat === 1) {
+                line += 'and has nearly low battery. ';
+              }
+            }
+          }
+
+          if (line !== '') {
+            line += '</p>';
+            message += line;
+          }
+        }
+
+        document.getElementById('messages').innerHTML = message;
       }
 
       const refreshButton = document.getElementById('refresh');
